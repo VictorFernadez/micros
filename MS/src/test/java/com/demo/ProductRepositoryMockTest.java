@@ -17,7 +17,7 @@ public class ProductRepositoryMockTest {
     private ProductRepository productRepository;
 
     @Test
-    public void whenFindByCategory_thenReturnListProduct(){
+    public void whenFindByCategory_thenReturnListProduct() {
         Product product01 = Product.builder()
                 .name("computer")
                 .category(Category.builder().id(1L).build())

@@ -1,15 +1,12 @@
+
 #Application Configuration
-#Con estas l�neas se habilitan los messages para las validaciones de los campos javax.validation.constraints
-#error:
-#  include-message: always
 server:
-  port: 8091
+  port: 8093
   error:
-  include-message: always
-  include-binding-errors: always
+    include-message: always
 
 # To See H2 Console in Browser:
-# http://localhost:8091/h2-console
+# http://localhost:8093/h2-console
 # Enabling H2 Console
 spring:
   h2:
@@ -19,7 +16,7 @@ spring:
   # DB
   # ===============================
   datasource:
-    url: jdbc:h2:mem:productDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:invoiceDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver
     platform: h2
     username: sa

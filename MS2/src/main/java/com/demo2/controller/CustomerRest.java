@@ -62,9 +62,9 @@ public class CustomerRest {
 
     @PostMapping
     public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer, BindingResult result) {
-        log.info("Creating Customer :{}",customer);
+        log.info("Creating Customer :{}", customer);
         if (result.hasErrors()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,this.formatMessage(result));
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
         Customer customerBD = customerService.createCustomer(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(customerBD);
@@ -72,23 +72,23 @@ public class CustomerRest {
     }
 
     @PutMapping(value = "/id")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable("id") Long id,@RequestBody Customer customer){
-        log.info("Updating Customer : {}" , id);
+    public ResponseEntity<Customer> updateCustomer(@PathVariable("id") Long id, @RequestBody Customer customer) {
+        log.info("Updating Customer : {}", id);
         Customer currentCustomer = customerService.getCustomer(id);
-        if(currentCustomer == null){
-            log.error("Unable to update. Customer with id {} not found",id);
+        if (currentCustomer == null) {
+            log.error("Unable to update. Customer with id {} not found", id);
             return ResponseEntity.notFound().build();
         }
         customer.setId(id);
-        currentCustomer=customerService.updateCustomer(customer);
+        currentCustomer = customerService.updateCustomer(customer);
         return ResponseEntity.ok().body(currentCustomer);
 
     }
 
-    public ResponseEntity<Customer> deleteCustomer(Long id){
-        log.info("Fetching & Deleting Customer with id {}",id);
+    public ResponseEntity<Customer> deleteCustomer(Long id) {
+        log.info("Fetching & Deleting Customer with id {}", id);
         Customer customer = customerService.getCustomer(id);
-        if(customer == null){
+        if (customer == null) {
             log.error("Unable to delete. Customer with id {} not found.", id);
             return ResponseEntity.notFound().build();
         }

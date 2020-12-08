@@ -25,7 +25,7 @@ public class ProductServiceMockTest {
     private ProductService productService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
         productService = new ProductServiceImpl(productRepository);
         Product computer = Product.builder()
@@ -41,15 +41,16 @@ public class ProductServiceMockTest {
         Mockito.when(productRepository.save(computer)).thenReturn(computer);
 
     }
+
     @Test
-    public void whenValidGetID_ThenReturnProduct(){
+    public void whenValidGetID_ThenReturnProduct() {
         Product found = productService.getProduct(1L);
         Assertions.assertThat(found.getName()).isEqualTo("computer");
     }
 
     @Test
-    public void whenValidUpdateStock_ThenReturnNewStock(){
-        Product product = productService.updateStock(1L,Double.parseDouble("10"));
+    public void whenValidUpdateStock_ThenReturnNewStock() {
+        Product product = productService.updateStock(1L, Double.parseDouble("10"));
         Assertions.assertThat(product.getStock()).isEqualTo(15.0);
 
     }
